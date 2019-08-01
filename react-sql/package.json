@@ -1,0 +1,24 @@
+{
+  "name": "react-sql",
+  "version": "1.0.0",
+  "description": "React, Node, & MySQL \u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D t, Express, MySQL project for CS631 class",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "cs631",
+    "react",
+    "express",
+    "mysql",
+    "node"
+  ],
+  "author": "Nicole Phillips",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql": "^2.17.1"
+  }
+}
