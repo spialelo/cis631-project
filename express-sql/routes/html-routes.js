@@ -6,6 +6,7 @@ const SELECT_ALL_AIRCRAFTS = 'SELECT * FROM aircraft';
 const SELECT_ALL_ATTENDANTS = 'SELECT * FROM flight_attendant';
 const SELECT_ALL_FLIGHT_INSTANCES = 'SELECT * FROM flight_instance';
 
+// routes are the endpoints, we will hit
 
 module.exports = (app, connection) => {
     app.get('/', (req, res) => {
@@ -44,6 +45,26 @@ module.exports = (app, connection) => {
                 return res.json({
                     data: results
                 });
+            }
+        });
+    });
+
+    //http://localhost:4000/flights/add?flno=8523&origin=newark&destination=san%20diego
+    /*
+    query works in mysql workbench:
+    INSERT into flightsdb_schema.flights( FLNO, ORIGIN, DESTINATION)
+values(95265, 'san antonio', 'newark')
+
+    */
+    app.get('/flights/add', (req, res) => {
+        const { flno, origin, destination } = req.query;
+        const INSERT_FLNO_QUERY = `INSERT INTO flights (FLNO, ORIGIN, DESTINATION) VALUES(${flno}, '${origin}', '${destination}')`;
+        // quotes around the bloody strings!!!
+        connection.query(INSERT_FLNO_QUERY, (err, results) => {
+            if (err) {
+                return res.send(err);
+            } else {
+                return res.send('Flight added successfully.');
             }
         });
     });

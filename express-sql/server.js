@@ -2,14 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
 
-const PORT = process.env.PORT || 3000; // set up port
+const PORT = process.env.PORT || 4000; // set up port
 
 const app = express(); // initialize express
 
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'xxx', // update password
+    password: 'X-23-Rogue-86', // update password
     database: 'flightsdb_schema'
 });
 
