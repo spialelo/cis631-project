@@ -13,6 +13,7 @@ const SELECT_ALL_INTERNAL_STAFF = 'SELECT * FROM internal_staff';
 const SELECT_ALL_EXTERNAL_STAFF = 'SELECT * FROM external_staff';
 const SELECT_ALL_CLASSES = 'SELECT * FROM classes';
 const SELECT_ALL_INSTRUCTORS = 'SELECT * FROM instructors';
+const SELECT_ALL_MEMBERS = 'SELECT * FROM members';
 
 module.exports = (app, connection) => {
     app.get('/', (req, res) => {
@@ -150,6 +151,18 @@ values(95265, 'san antonio', 'newark')
 
     app.get('/instructors', (req, res) => {
         connection.query(SELECT_ALL_INSTRUCTORS, (err, results) => {
+            if (err) {
+                return res.send(err);
+            } else {
+                return res.json({
+                    data: results
+                });
+            }
+        });
+    });
+
+    app.get('/members', (req, res) => {
+        connection.query(SELECT_ALL_MEMBERS, (err, results) => {
             if (err) {
                 return res.send(err);
             } else {

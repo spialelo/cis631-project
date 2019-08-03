@@ -4,6 +4,7 @@ import './App.css';
 import { BrowserRouter, Link, Route } from "react-router-dom";
 import HumanResources from './HumanResources';
 import ExerciseMgmt from './ExerciseMgmt';
+import ViewTable from './ViewTable';
 
 class App extends Component {
 
@@ -17,6 +18,10 @@ class App extends Component {
         <div>
           <Route path="/human-resources" component={HumanResources} />
           <Route path="/exercise-management" component={ExerciseMgmt} />
+          <Route path="/staff" component={ViewTable} />
+          <Route path="/members" component={ViewTable} />
+          <Route path="/instructors" component={ViewTable} />
+          <Route path="/classes" component={ViewTable} />
         </div>
       </div>
     );
