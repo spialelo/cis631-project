@@ -22,6 +22,13 @@ class App extends Component {
           <Route path="/members" component={ViewTable} />
           <Route path="/instructors" component={ViewTable} />
           <Route path="/classes" component={ViewTable} />
+          {/* Could use one component for Register for class/assign instructor. use pathname
+          to render correct divs and onSubmit calls. Maybe squeeze in the Pay? */}
+          {/*
+          <Route path="/register-for-class" component={UpdateTable} />
+          <Route path="/assign-instructor" component={UpdateTable} />
+          <Route path="/pay-staff" component={UpdateTable} />
+          */}
         </div>
       </div>
     );
