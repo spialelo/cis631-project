@@ -1,15 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Table from './Table';
-
-const TABLE_HEADERS = {
-    staff: ['employee_id', 'first name', 'last name'],
-    'internal-staff': ['employee_id', 'first name', 'last name'],
-    'external-staff': ['employee_id', 'first name', 'last name'],
-    members: ['memid', 'first name', 'last name'],
-    instructors: [],
-    classes: []
-};
 
 
 class ViewTable extends React.Component{
@@ -25,26 +15,71 @@ class ViewTable extends React.Component{
     componentWillMount() {
         // use prop types and look at pathname so we can use this
         const path = this.props.location.pathname.split('/')[1];
-        this.setState({ path }, this.getObjects());
+        this.setState({ path });
     }
+
+    componentDidMount() {
+        this.getObjects();
+      }
     
     getObjects = _ => {
         if(!this.state.path) {
             return;
         }
 
-        fetch('http://localhost:4000/'+this.state.path)
+        const url = 'http://localhost:9000/'+this.state.path;
+
+        fetch(url)
             .then(response => response.json())
-            .then(response => this.setState({ flights: response.data}))
+            .then(response => this.setState({ data: response.data}, this.renderTable()))
             .catch(err => console.error(err));
+    }
+
+    renderTable() {
+        if(!this.state.data) {
+            return;
+        }
+
+
+        const data = this.state.data;
+        const main = [];
+        const headers = [];
+        headers.push(<td key="index">Index</td>);
+        // use the keys as the headers
+        Object.keys(data[0]).forEach((key) => {
+            headers.push(<td key={key}><strong>{key}</strong></td>)
+        });
+        
+        main.push(<tr key="headers">{headers}</tr>);
+        
+        data.forEach((row, index) => {
+            const cells = [];
+            cells.push(<td key="index">{index}</td>)
+            Object.keys(data[index]).forEach((key, i) => {
+            cells.push(<td key={i}>{data[index][key]}</td>);
+            });
+
+            main.push(
+                <tr key={index}>
+                    {cells}
+                </tr>
+            );
+       
+        });
+        
+        return main;
+
+        //then go through data and print
     }
 
     render(){
         const path = this.state.path ? this.state.path : undefined;
         return(
             <div>
-                <p>{`ViewTable (based on ${path})!`}</p>
-                <Table headers={TABLE_HEADERS[path]}/>
+                <p>{`Table for ${path}!`}</p>
+                <table>
+                    <tbody>{this.renderTable()}</tbody>
+                </table>
             </div>
             );
     }
