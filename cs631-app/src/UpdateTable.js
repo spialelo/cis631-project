@@ -19,7 +19,12 @@ class UpdateTable extends React.Component{
     }
 
     componentDidMount() {
-        this.getObjects();
+        const action = this.state.path ? this.state.path : undefined;
+        if(!action) {
+            return;
+        }
+
+        this.renderView(action);
       }
     
     getObjects = _ => {
@@ -40,6 +45,16 @@ class UpdateTable extends React.Component{
             return;
         }
         //then go through data and print
+    }
+
+    renderView(location) {
+        switch(location) {
+            case '': ;
+            break;
+            default:
+            break;
+        }
+
     }
 
     render(){

@@ -68,7 +68,6 @@ class HumanResources extends React.Component{
                     <li>Pay Staff</li>  {/* component */}
                     <li>Salary History</li>  {/* Link to Table - need query*/}
                 </ul>
-                {data && <p>there's data</p>}
                 {this.renderNavigationLinks()}
             </div>
             );

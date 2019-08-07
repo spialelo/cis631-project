@@ -78,8 +78,8 @@ class ExerciseMgmt extends React.Component{
                 <p>Exercise Management!</p>
                 {this.renderNavigationLinks()}
                 <ul>
-                    <li>Internal</li> {/* Link to page: View Classes(table), add Classes(component), scheduled class(component), view instructors(table), assign instructor(component) */}
-                    <li>External</li> {/* Link to page: View classes(table/schedule), register for class (component) */}
+                    <li>Internal</li> {/* add Classes(component), scheduled class(component), assign instructor(component) */}
+                    <li>External</li> {/* register for class (component) - needs constraint but works*/}
                 </ul>
                 <input
                     value={this.state.flight.flno}

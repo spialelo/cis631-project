@@ -2,9 +2,9 @@
 
 // routes are the endpoints, we will hit
 
-const SELECT_ALL_EMPLOYEES = 'SELECT * FROM employee';
-// const SELECT_ALL_EMPLOYEES = 'SELECT * FROM employee E, instructor I WHERE E.Eid = I.sInstr_id';
-const SELECT_ALL_CONTRACTORS = 'SELECT * FROM contractor';
+//const SELECT_ALL_EMPLOYEES = 'SELECT * FROM employee';
+const SELECT_ALL_EMPLOYEES = 'SELECT * FROM instructor AS I JOIN employee AS E ON I.Instr_id = E.Empid';
+const SELECT_ALL_CONTRACTORS = 'SELECT * FROM instructor AS I JOIN contractor AS C ON I.Instr_id = C.Cid';
 const SELECT_ALL_EXERCISES = 'SELECT * FROM exercise';
 const SELECT_ALL_CLASSES = 'SELECT * FROM exercise_class';
 const SELECT_ALL_INSTRUCTORS = 'SELECT * FROM instructor';
@@ -12,8 +12,8 @@ const SELECT_ALL_MEMBERS = 'SELECT * FROM member';
 const SELECT_ALL_ROOMS = 'SELECT * FROM room';
 const REGISTER_CLASS = 'SELECT * FROM classregister';
 const MEMBERSHIPS = 'SELECT * FROM membership';
-const REGISTERED = 'SELECT * FROM registered';
-const TEACHES = 'SELECT * FROM teaches';
+const REGISTERED = 'SELECT M.Mid, M.M_name, R.Registration_date FROM member AS M JOIN registered AS R ON M.Mid = R.Mid';
+const TEACHES = 'SELECT * FROM instructor AS I JOIN teaches AS T ON I.Instr_id = T.Instr_id';
 
 module.exports = (app, connection) => {
     app.get('/', (req, res) => {
