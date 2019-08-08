@@ -20,28 +20,6 @@ module.exports = (app, connection) => {
         res.send('Hopefully this is home ?');
     });
 
-    //http://localhost:9000/flights/add?flno=8523&origin=newark&destination=san%20diego
-    /*
-    query works in mysql workbench:
-    INSERT into flightsdb_schema.flights( FLNO, ORIGIN, DESTINATION)
-values(95265, 'san antonio', 'newark')
-
-    */
-    app.get('/flights/add', (req, res) => {
-        const { flno, origin, destination } = req.query;
-        const INSERT_FLNO_QUERY = `INSERT INTO flights (FLNO, ORIGIN, DESTINATION) VALUES(${flno}, '${origin}', '${destination}')`;
-        // quotes around the bloody strings!!!
-        connection.query(INSERT_FLNO_QUERY, (err, results) => {
-            if (err) {
-                return res.send(err);
-            } else {
-                return res.json({
-                    data: results
-                });
-            }
-        });
-    });
-
     // fitness database endpoints
     app.get('/instructors', (req, res) => {
         connection.query(SELECT_ALL_INSTRUCTORS, (err, results) => {
@@ -93,10 +71,10 @@ values(95265, 'san antonio', 'newark')
 
 
     app.get('/add-exercise', (req, res) => {
-        const { mid, class_id } = req.query;
-        const REG_MEM_CLASS_QUERY = `INSERT INTO classregister (Mid, Class_id) VALUES('${mid}', '${class_id}')`;
+        const { exe_id, exe_type, exe_name, exe_desc } = req.query;
+        const ADD_EXERCISE_QUERY = `INSERT INTO exercise (Exe_id, Exe_type, Exe_name, Exe_description) VALUES('${exe_id}', '${exe_type}', '${exe_name}', '${exe_desc}')`;
         // quotes around the bloody strings!!!
-        connection.query(REG_MEM_CLASS_QUERY, (err, results) => {
+        connection.query(ADD_EXERCISE_QUERY, (err, results) => {
             if (err) {
                 return res.send(err);
             } else {
@@ -109,10 +87,10 @@ values(95265, 'san antonio', 'newark')
 
 
     app.get('/add-class', (req, res) => {
-        const { mid, class_id } = req.query;
-        const REG_MEM_CLASS_QUERY = `INSERT INTO classregister (Mid, Class_id) VALUES('${mid}', '${class_id}')`;
+        const { class_id, exe_id, build, room } = req.query;
+        const ADD_CLASS_QUERY = `INSERT INTO exercise_class (Class_id, Exe_id, Building, Room) VALUES('${class_id}', '${exe_id}', '${build}', ${room})`;
         // quotes around the bloody strings!!!
-        connection.query(REG_MEM_CLASS_QUERY, (err, results) => {
+        connection.query(ADD_CLASS_QUERY, (err, results) => {
             if (err) {
                 return res.send(err);
             } else {
