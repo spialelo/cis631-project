@@ -9,7 +9,7 @@ class HumanResources extends React.Component{
       }
     
     componentDidMount() {
-      this.getFlights();
+      // this.getFlights();
     }
     
     getFlights = _ => {
@@ -28,46 +28,23 @@ class HumanResources extends React.Component{
             <li><Link to="/contractors">Contractors</Link></li>
             <li><Link to="/exercises">Exercises</Link></li>
             <li><Link to="/classes">Classes</Link></li>
-            <li><Link to="/teaches">Teaches Class</Link></li>
+            <li><Link to="/teaches">Teaches</Link></li>
           </ul>
           <div>
             <Route path="/instructors" component={ViewTable} />
             <Route path="/employees" component={ViewTable} />
             <Route path="/contractors" component={ViewTable} />
             <Route path="/classes" component={ViewTable} />
-            <Route path="/rooms" component={ViewTable} />
-            <Route path="/exercises" component={ViewTable} />
-            <Route path="/members" component={ViewTable} />
-            <Route path="/memberships" component={ViewTable} />
-            <Route path="/registered" component={ViewTable} />
             <Route path="/teaches" component={ViewTable} />
-            <Route path="/registerclass" component={ViewTable} />
-            
-            
-            {/* <Route path="/memberships" component={ViewTable} />
-            <Route path="/register-class" component={ViewTable} /> */}
-            
-            {/* Could use one component for Register for class/assign instructor. use pathname
-            to render correct divs and onSubmit calls. Maybe squeeze in the Pay? */}
-            {/*
-            <Route path="/register-for-class" component={UpdateTable} />
-            <Route path="/assign-instructor" component={UpdateTable} />
-            <Route path="/pay-staff" component={UpdateTable} />
-            */}
           </div>
         </div>
       );
     }
     
     render(){
-        const data = this.state.flights;
         return(
             <div>
-                <p>Human Resources!</p>
-                <ul>
-                    <li>Pay Staff</li>  {/* component */}
-                    <li>Salary History</li>  {/* Link to Table - need query*/}
-                </ul>
+                <p>&raquo;&nbsp;Human Resources&nbsp;&laquo;</p>
                 {this.renderNavigationLinks()}
             </div>
             );
