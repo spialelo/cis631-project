@@ -23,6 +23,7 @@ class ExerciseMgmt extends React.Component{
               <li><Link to="/teaches">Assigned Classes</Link></li>
               <li><Link to="/assign-to-class">Assign Instructor to Class</Link></li>
               <li><Link to="/rooms">Rooms</Link></li>
+              <li><Link to="/members">Members</Link></li>
               <li><Link to="/registered">Registered</Link></li>
               <li><Link to="/register-for-class">Register for Class</Link></li>
             </ul>
@@ -31,6 +32,7 @@ class ExerciseMgmt extends React.Component{
               <Route path="/exercises" component={ViewTable} />
               <Route path="/classes" component={ViewTable} />
               <Route path="/teaches" component={ViewTable} />
+              <Route path="/members" component={ViewTable} />
               <Route path="/add-class" component={UpdateTable} />
               <Route path="/add-exercise" component={UpdateTable} />
               <Route path="/assign-to-class" component={UpdateTable} />

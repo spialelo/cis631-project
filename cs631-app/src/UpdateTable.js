@@ -88,8 +88,21 @@ class UpdateTable extends React.Component{
         e.preventDefault();
         const state = this.state;
         const { mid, class_id } = state.register;
+        let count = 0;
         console.log('register');
         const url = 'http://localhost:9000/register-for-class?mid='+mid+'&class_id='+class_id;
+        fetch('http://localhost:9000/classes')
+            .then(response => response.json())
+            .then((response) => {
+                response.data.forEach((index) => {
+                    if(response.data[index].Class_id === class_id) {
+                        count += 1;
+                    }
+                });
+            });
+
+            console.log(count);
+
         fetch(url)
           .then(response => response.json())
           .then(response => this.setState({ data: response.data}, () => {

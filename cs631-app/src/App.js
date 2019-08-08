@@ -26,6 +26,7 @@ class App extends Component {
           
           <Route path="/instructors" component={ViewTable} />
           <Route path="/employees" component={ViewTable} />
+          <Route path="/members" component={ViewTable} />
           <Route path="/contractors" component={ViewTable} />
           <Route path="/exercises" component={ViewTable} />
           <Route path="/classes" component={ViewTable} />

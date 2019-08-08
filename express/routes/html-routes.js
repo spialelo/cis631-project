@@ -1,4 +1,4 @@
-// const mysql = require('mysql');
+const mysql = require('mysql');
 
 // routes are the endpoints, we will hit
 
@@ -91,6 +91,22 @@ module.exports = (app, connection) => {
         const ADD_CLASS_QUERY = `INSERT INTO exercise_class (Class_id, Exe_id, Building, Room) VALUES('${class_id}', '${exe_id}', '${build}', ${room})`;
         // quotes around the bloody strings!!!
         connection.query(ADD_CLASS_QUERY, (err, results) => {
+            if (err) {
+                return res.send(err);
+            } else {
+                return res.json({
+                    data: results
+                });
+            }
+        });
+    });
+    app.get('/select-class', (req, res) => {
+        const { class_id } = req.query;
+        const select_sql = mysql.format("SELECT R.Class_id, R.Room, R.Building FROM exercise_class AS R WHERE Class_id=?", [class_id]);
+
+        // var sql = mysql.format("SELECT url FROM Sonic_url WHERE name=?", [input]);
+        // quotes around the bloody strings!!!
+        connection.query(select_sql, (err, results) => {
             if (err) {
                 return res.send(err);
             } else {
