@@ -20,6 +20,7 @@ class App extends Component {
           <Route path="/exercise-management" component={ExerciseMgmt} />
           <Route path="/human-resources" component={HumanResources} />
           <Route path="/add-class" component={UpdateTable} />
+          <Route path="/add-exercise" component={UpdateTable} />
           <Route path="/assign-to-class" component={UpdateTable} />
           <Route path="/register-for-class" component={UpdateTable} />
           

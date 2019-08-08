@@ -105,6 +105,7 @@ class UpdateTable extends React.Component{
         const state = this.state;
           return (
             <div>
+            <p>Assign Instructor</p>
             <label key="instr">Instructor  ID:
             <input type="text" onChange={(e)=>{this.setState({assign: Object.assign({}, state.assign, {instr_id: e.target.value})})}} name="" id="input-instructor" className="form-control" value={state.assign.instr_id} required="required" title=""/>
             </label>
@@ -135,6 +136,7 @@ class UpdateTable extends React.Component{
         const state = this.state;
         return(
             <div>
+                <p>Register for Class</p>
                 <label>Member  ID:
                 <input type="text" onChange={(e)=>{this.setState({register: Object.assign({}, state.register, {mid: e.target.value})})}} name="" id="input-member" placeholder="Enter member ID" className="form-control" value={state.register.mid} required="required" title=""/>
                 </label>
@@ -148,6 +150,65 @@ class UpdateTable extends React.Component{
             </div>
         );
       }
+
+      renderAddClass() {
+        const state = this.state;
+        return (
+          <div>
+              <p>Add Class</p>
+          <label key="class-id">Class  ID:
+          <input type="text" onChange={(e)=>{this.setState({assign: Object.assign({}, state.assign, {instr_id: e.target.value})})}} name="" id="input-cid" className="form-control" value={state.assign.instr_id} required="required" title=""/>
+          </label>
+
+          <label key="exe-id">Exe ID:
+          <input type="text" onChange={(e)=>{this.setState({assign: Object.assign({}, state.assign, {class_id: e.target.value})})}} name="" id="input-exid" className="form-control" value={state.assign.class_id}  required="required" title=""/>
+          </label>
+
+
+          <label key="exe-build">Building:
+          <input type="text" onChange={(e)=>{this.setState({assign: Object.assign({}, state.assign, {dur: e.target.value})})}} name="" id="input-build" className="form-control" placeholder="" value={state.assign.dur} required="required" title=""/>
+          </label>
+
+
+          <label key="room">Room:
+          <input type="text" onChange={(e)=>{this.setState({assign: Object.assign({}, state.assign, {dur: e.target.value})})}} name="" id="input-room" className="form-control" placeholder="Description(under 30 characters)" value={state.assign.dur} required="required" title=""/>
+          </label>
+          <br/>
+          <br/>
+          <button type="submit" onClick={this.assignInstructor}>Add Class</button>
+      </div>
+        );
+      }
+
+      renderAddExercise() {
+        const state = this.state;
+        return (
+          <div>
+              <p>Add Exercise</p>
+          <label key="exe-id">Exe  ID:
+          <input type="text" onChange={(e)=>{this.setState({assign: Object.assign({}, state.assign, {instr_id: e.target.value})})}} name="" id="input-id" className="form-control" value={state.assign.instr_id} required="required" title=""/>
+          </label>
+
+          <label key="exe-type">Exe Type:
+          <input type="text" onChange={(e)=>{this.setState({assign: Object.assign({}, state.assign, {class_id: e.target.value})})}} name="" id="input-type" className="form-control" value={state.assign.class_id}  required="required" title=""/>
+          </label>
+
+
+          <label key="exe-name">Exe Name:
+          <input type="text" onChange={(e)=>{this.setState({assign: Object.assign({}, state.assign, {dur: e.target.value})})}} name="" id="input-name" className="form-control" placeholder="" value={state.assign.dur} required="required" title=""/>
+          </label>
+
+
+          <label key="exe-desc">Exe Description:
+          <input type="text" onChange={(e)=>{this.setState({assign: Object.assign({}, state.assign, {dur: e.target.value})})}} name="" id="input-desc" className="form-control" placeholder="Description(under 30 characters)" value={state.assign.dur} required="required" title=""/>
+          </label>
+          <br/>
+          <br/>
+          <button type="submit" onClick={this.assignInstructor}>Add Exercise</button>
+      </div>
+        );
+      }
+
     renderView(location) {
         
         let view;
@@ -157,6 +218,12 @@ class UpdateTable extends React.Component{
             break;
             case 'register-for-class': ;
             view = this.renderRegister();
+            break;
+            case 'add-class': ;
+            view = this.renderAddClass();
+            break;
+            case 'add-exercise': ;
+            view = this.renderAddExercise();
             break;
             default:
             break;
@@ -170,7 +237,6 @@ class UpdateTable extends React.Component{
         // const path = this.state.path ? this.state.path : undefined;
         return(
             <div>
-                <p>{this.state.path === 'assign-to-class' ? 'Assign Instructor to Class' : 'Register for Class'}</p>
                 {this.renderView(this.state.path)}
             </div>
             );

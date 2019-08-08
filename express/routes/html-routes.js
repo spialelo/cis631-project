@@ -91,6 +91,23 @@ values(95265, 'san antonio', 'newark')
         });
     });
 
+
+    app.get('/add-exercise', (req, res) => {
+        const { mid, class_id } = req.query;
+        const REG_MEM_CLASS_QUERY = `INSERT INTO classregister (Mid, Class_id) VALUES('${mid}', '${class_id}')`;
+        // quotes around the bloody strings!!!
+        connection.query(REG_MEM_CLASS_QUERY, (err, results) => {
+            if (err) {
+                return res.send(err);
+            } else {
+                return res.json({
+                    data: results
+                });
+            }
+        });
+    });
+
+
     app.get('/add-class', (req, res) => {
         const { mid, class_id } = req.query;
         const REG_MEM_CLASS_QUERY = `INSERT INTO classregister (Mid, Class_id) VALUES('${mid}', '${class_id}')`;
