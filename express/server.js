@@ -10,7 +10,7 @@ const app = express(); // initialize express
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'X-23-Rogue-86', // update password
+    password: 'password', // update password
     database: 'new_schema'
 });
 
